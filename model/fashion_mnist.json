@@ -12,8 +12,8 @@
       "activation": "relu"
     },
     "weights": [
-      "kernel",
-      "bias"
+      "dense_1_W",
+      "dense_1_b"
     ]
   },
   {
@@ -23,8 +23,8 @@
       "activation": "relu"
     },
     "weights": [
-      "kernel",
-      "bias"
+      "dense_2_W",
+      "dense_2_b"
     ]
   },
   {
@@ -34,8 +34,8 @@
       "activation": "softmax"
     },
     "weights": [
-      "kernel",
-      "bias"
+      "output_W",
+      "output_b"
     ]
   }
 ]
