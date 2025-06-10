@@ -33,9 +33,27 @@ print(f"✅ Test accuracy = {acc:.4f}")
 
 model.save(MODEL_H5)
 
-model_config = model.to_json()
+model_arch = []
+for layer in model.layers:
+    layer_type = layer.__class__.__name__  
+    config = {}
+
+    if hasattr(layer, 'activation') and layer.activation:
+        act_name = layer.activation.__name__
+        if act_name != 'linear':  
+            config['activation'] = act_name
+
+    weight_names = [w.name for w in layer.weights]
+
+    model_arch.append({
+        'name': layer.name,
+        'type': layer_type,
+        'config': config,
+        'weights': weight_names
+    })
+
 with open(MODEL_JSON, 'w') as f:
-    f.write(model_config)
+    json.dump(model_arch, f, indent=2)
 
 weights = {}
 for layer in model.layers:
