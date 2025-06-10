@@ -8,7 +8,6 @@ def relu(x):
     return x
 
 def softmax(x):
-    x = np.atleast_2d(x)
     e_x = np.exp(x - np.max(x, axis=-1, keepdims=True))
     x = e_x / np.sum(e_x, axis=-1, keepdims=True)
     return x
