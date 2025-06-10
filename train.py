@@ -35,13 +35,14 @@ model.save(MODEL_H5)
 
 model_arch = []
 for layer in model.layers:
-    layer_type = layer.__class__.__name__  
+    layer_type = layer.__class__.__name__
     config = {}
 
     if hasattr(layer, 'activation') and layer.activation:
         act_name = layer.activation.__name__
-        if act_name != 'linear':  
+        if act_name != 'linear':
             config['activation'] = act_name
+
 
     weight_names = [w.name for w in layer.weights]
 
@@ -54,6 +55,7 @@ for layer in model.layers:
 
 with open(MODEL_JSON, 'w') as f:
     json.dump(model_arch, f, indent=2)
+
 
 weights = {}
 for layer in model.layers:
