@@ -10,7 +10,8 @@ def relu(x):
 def softmax(x):
     x = np.atleast_2d(x)
     e_x = np.exp(x - np.max(x, axis=-1, keepdims=True))
-    return e_x / np.sum(e_x, axis=-1, keepdims=True)
+    x = e_x / np.sum(e_x, axis=-1, keepdims=True)
+    return x
 
 # === Flatten ===
 def flatten(x):
@@ -42,7 +43,6 @@ def nn_forward_h5(model_arch, weights, data):
                 x = softmax(x)
 
     return x
-
 
 # You are free to replace nn_forward_h5() with your own implementation 
 def nn_inference(model_arch, weights, data):
