@@ -4,10 +4,13 @@ import json
 # === Activation functions ===
 def relu(x):
     # TODO: Implement the Rectified Linear Unit
+    x = np.maximum(0, x)
     return x
 
 def softmax(x):
     # TODO: Implement the SoftMax function
+    exp_x = np.exp(x - np.max(x, axis=-1, keepdims=True))
+    x = exp_x / np.sum(exp_x, axis=-1, keepdims=True)
     return x
 
 # === Flatten ===
